@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../providers/theme_provider.dart';
 import '../services/api_service.dart';
 import '../models/show_models.dart';
 import '../providers/favourites_provider.dart';
@@ -49,11 +50,20 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
         title: Text(show!.name,style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold),),
         centerTitle: true,
-        actions: [
+        actions: [  IconButton(
+          icon: Icon(
+            Provider.of<ThemeProvider>(context).isDark
+                ? Icons.dark_mode
+                : Icons.light_mode,
+          ),
+          onPressed: () {
+            Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+          },
+        ),
           IconButton(
             icon: Icon(
               isFav ? Icons.favorite : Icons.favorite_border,
-              color: isFav ? Colors.black : Colors.black,
+              color: isFav ? Colors.white : Colors.black,
             ),
             onPressed: () {
               favoritesProvider.toggleFavorite(show!);

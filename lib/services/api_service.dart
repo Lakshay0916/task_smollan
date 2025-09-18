@@ -50,7 +50,7 @@ class ApiService {
 
 
 
-  // 🔹 Search shows by query
+  //Search shows by query
   Future<List<ShowModel>> searchShows(String query) async {
     final response = await _dio.get("/search/shows?q=$query");
     return (response.data as List)
@@ -58,7 +58,7 @@ class ApiService {
         .toList();
   }
 
-  // 🔹 Fetch details of one show
+  // Fetch details of one show
   Future<ShowModel> fetchShowDetails(int id) async {
     final response = await _dio.get("/shows/$id");
     return ShowModel.fromJson(response.data);

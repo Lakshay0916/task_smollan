@@ -9,28 +9,46 @@ class ShowCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return GestureDetector(
       onTap: onTap,
       child: Card(
         elevation: 4,
-        margin: const EdgeInsets.all(8),
+        margin: EdgeInsets.symmetric(
+          horizontal: screenWidth * 0.03, // 3% of screen width
+          vertical: 8,
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(screenWidth * 0.03),
+        ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (show.image != null)
               Hero(
                 tag: "show_${show.id}",
-                child: Image.network(
-                  show.image!,
-                  height: 180,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(screenWidth * 0.03)),
+                  child: Image.network(
+                    show.image!,
+                    width: double.infinity,
+                    height: screenWidth * 0.5, // responsive height
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(screenWidth * 0.03),
               child: Text(
                 show.name,
-                style: const TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: screenWidth * 0.045, // responsive font
+                ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ],

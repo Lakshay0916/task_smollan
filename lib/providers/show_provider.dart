@@ -20,7 +20,7 @@ class ShowProvider extends ChangeNotifier {
   List<ShowModel> searchResults = [];
   UIState searchState = UIState.success;
 
-  /// Load home shows (Trending / Popular / Upcoming)
+  /// Load home shows
   Future<void> loadHomeShows([FilterCategory filter = FilterCategory.trending]) async {
     try {
       homeState = UIState.loading;

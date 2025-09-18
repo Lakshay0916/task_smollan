@@ -52,8 +52,10 @@ class _MyAppState extends State<MyApp> {
         body: _screens[_selectedIndex],
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: const Color(0xFFbb4531),
-
           currentIndex: _selectedIndex,
+          type: BottomNavigationBarType.fixed, // ensures color settings are respected
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.white70, // slightly dimmed for unselected items
           onTap: (index) => setState(() => _selectedIndex = index),
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
@@ -61,6 +63,7 @@ class _MyAppState extends State<MyApp> {
             BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Favorites"),
           ],
         ),
+
       ),
     );
   }
